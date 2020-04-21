@@ -39,11 +39,11 @@ class TakeHomeCalculator {
             this.currency = currency;
         }
 
-        private Money plus(Money next) {
-            if (!next.currency.equals(this.currency)) {
+        private Money plus(Money other) {
+            if (!other.currency.equals(this.currency)) {
                 throw new Incalculable();
             }
-            return new Money(value + next.value, next.currency);
+            return new Money(value + other.value, other.currency);
         }
     }
 }
