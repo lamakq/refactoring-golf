@@ -23,9 +23,13 @@ class TakeHomeCalculator {
             total = total.plus(next);
         }
 
-        Double amount = total.value * (taxRate.getPercent() / 100d);
-        Money tax = money(amount.intValue(), first.currency);
+        Money tax = apply(first, total);
 
         return total.minus(tax);
+    }
+
+    private Money apply(Money first, Money total) {
+        Double amount = total.value * (taxRate.getPercent() / 100d);
+        return money(amount.intValue(), first.currency);
     }
 }
