@@ -15,4 +15,8 @@ class Money {
         }
         return new Money(value + other.value, other.currency);
     }
+
+    Money minus(Money tax) {
+        return new Money(value - tax.value, currency);
+    }
 }

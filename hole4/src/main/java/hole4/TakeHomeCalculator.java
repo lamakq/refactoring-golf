@@ -27,7 +27,7 @@ class TakeHomeCalculator {
         if (!total.currency.equals(tax.currency)) {
             throw new Incalculable();
         }
-        return new Money(total.value - tax.value, total.currency);
+        return total.minus(tax);
     }
 
 }
