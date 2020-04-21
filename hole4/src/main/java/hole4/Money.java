@@ -16,10 +16,10 @@ class Money {
         return new Money(value + other.value, other.currency);
     }
 
-    Money minus(Money tax) {
-        if (!currency.equals(tax.currency)) {
+    Money minus(Money other) {
+        if (!currency.equals(other.currency)) {
             throw new Incalculable();
         }
-        return new Money(value - tax.value, currency);
+        return new Money(value - other.value, currency);
     }
 }
