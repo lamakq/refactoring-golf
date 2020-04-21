@@ -3,8 +3,6 @@ package hole5;
 import java.util.Arrays;
 import java.util.List;
 
-import static hole5.Money.money;
-
 class TakeHomeCalculator {
 
     public TakeHomeCalculator(TaxRate taxRate) {
@@ -23,13 +21,9 @@ class TakeHomeCalculator {
             total = total.plus(next);
         }
 
-        Money tax = apply(first, total);
+        Money tax = taxRate.apply(total);
 
         return total.minus(tax);
     }
 
-    private Money apply(Money first, Money total) {
-        Double amount = total.value * (taxRate.getPercent() / 100d);
-        return money(amount.intValue(), first.currency);
-    }
 }
