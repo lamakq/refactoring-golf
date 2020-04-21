@@ -5,11 +5,15 @@ import static hole5.Money.money;
 public class TaxRate {
     private int percent;
 
+    public static TaxRate taxRate(int percent) {
+        return new TaxRate(percent);
+    }
+
     public int getPercent() {
         return percent;
     }
 
-    public TaxRate(int percent) {
+    private TaxRate(int percent) {
         this.percent = percent;
     }
 
