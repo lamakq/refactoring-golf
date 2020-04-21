@@ -11,36 +11,36 @@ class TakeHomeCalculator {
         this.percent = percent;
     }
 
-    Pair<Integer, String> netAmount(Pair<Integer, String> first, Pair<Integer, String>... rest) {
+    Money<Integer, String> netAmount(Money<Integer, String> first, Money<Integer, String>... rest) {
 
-        List<Pair<Integer, String>> pairs = Arrays.asList(rest);
+        List<Money<Integer, String>> monies = Arrays.asList(rest);
 
-        Pair<Integer, String> total = first;
+        Money<Integer, String> total = first;
 
-        for (Pair<Integer, String> next : pairs) {
+        for (Money<Integer, String> next : monies) {
             if (!next.second.equals(total.second)) {
                 throw new Incalculable();
             }
         }
 
-        for (Pair<Integer, String> next : pairs) {
-            total = new Pair<>(total.first + next.first, next.second);
+        for (Money<Integer, String> next : monies) {
+            total = new Money<>(total.first + next.first, next.second);
         }
 
         Double amount = total.first * (percent / 100d);
-        Pair<Integer, String> tax = new Pair<>(amount.intValue(), first.second);
+        Money<Integer, String> tax = new Money<>(amount.intValue(), first.second);
 
         if (!total.second.equals(tax.second)) {
             throw new Incalculable();
         }
-        return new Pair<>(total.first - tax.first, first.second);
+        return new Money<>(total.first - tax.first, first.second);
     }
 
-    static class Pair<Integer, String> {
+    static class Money<Integer, String> {
         final Integer first;
         final String second;
 
-        Pair(Integer first, String second) {
+        Money(Integer first, String second) {
             this.first = first;
             this.second = second;
         }
