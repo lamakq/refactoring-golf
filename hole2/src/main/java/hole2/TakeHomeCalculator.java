@@ -36,11 +36,11 @@ class TakeHomeCalculator {
         return new Pair<>(total.first - tax.first, first.second);
     }
 
-    static class Pair<A, B> {
-        final A first;
+    static class Pair<Integer, B> {
+        final Integer first;
         final B second;
 
-        Pair(A first, B second) {
+        Pair(Integer first, B second) {
             this.first = first;
             this.second = second;
         }
