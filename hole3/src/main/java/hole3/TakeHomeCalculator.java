@@ -18,12 +18,6 @@ class TakeHomeCalculator {
         Money total = first;
 
         for (Money next : monies) {
-            if (!next.currency.equals(total.currency)) {
-                throw new Incalculable();
-            }
-        }
-
-        for (Money next : monies) {
             total = total.plus(next);
         }
 
@@ -46,6 +40,9 @@ class TakeHomeCalculator {
         }
 
         private Money plus(Money next) {
+            if (!next.currency.equals(this.currency)) {
+                throw new Incalculable();
+            }
             return new Money(value + next.value, next.currency);
         }
     }
