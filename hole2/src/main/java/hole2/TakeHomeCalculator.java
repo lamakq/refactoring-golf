@@ -11,32 +11,32 @@ class TakeHomeCalculator {
         this.percent = percent;
     }
 
-    Money<Integer, String> netAmount(Money<Integer, String> first, Money<Integer, String>... rest) {
+    Money netAmount(Money first, Money... rest) {
 
-        List<Money<Integer, String>> monies = Arrays.asList(rest);
+        List<Money> monies = Arrays.asList(rest);
 
-        Money<Integer, String> total = first;
+        Money total = first;
 
-        for (Money<Integer, String> next : monies) {
+        for (Money next : monies) {
             if (!next.second.equals(total.second)) {
                 throw new Incalculable();
             }
         }
 
-        for (Money<Integer, String> next : monies) {
-            total = new Money<>(total.first + next.first, next.second);
+        for (Money next : monies) {
+            total = new Money(total.first + next.first, next.second);
         }
 
         Double amount = total.first * (percent / 100d);
-        Money<Integer, String> tax = new Money<>(amount.intValue(), first.second);
+        Money tax = new Money(amount.intValue(), first.second);
 
         if (!total.second.equals(tax.second)) {
             throw new Incalculable();
         }
-        return new Money<>(total.first - tax.first, first.second);
+        return new Money(total.first - tax.first, first.second);
     }
 
-    static class Money<Integer, String> {
+    static class Money {
         final Integer first;
         final String second;
 
