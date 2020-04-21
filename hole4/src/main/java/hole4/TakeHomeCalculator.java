@@ -22,7 +22,7 @@ class TakeHomeCalculator {
         }
 
         Double amount = total.value * (percent / 100d);
-        Money tax = new Money(amount.intValue(), first.currency);
+        Money tax = Money.money(amount.intValue(), first.currency);
 
         return total.minus(tax);
     }
