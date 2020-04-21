@@ -7,11 +7,11 @@ import static hole5.Money.money;
 
 class TakeHomeCalculator {
 
-    private final int percent;
-
-    TakeHomeCalculator(int percent) {
-        this.percent = percent;
+    public TakeHomeCalculator(TaxRate taxRate) {
+        this.taxRate = taxRate;
     }
+
+    private final TaxRate taxRate;
 
     Money netAmount(Money first, Money... rest) {
 
@@ -23,7 +23,7 @@ class TakeHomeCalculator {
             total = total.plus(next);
         }
 
-        Double amount = total.value * (percent / 100d);
+        Double amount = total.value * (taxRate.getPercent() / 100d);
         Money tax = money(amount.intValue(), first.currency);
 
         return total.minus(tax);
