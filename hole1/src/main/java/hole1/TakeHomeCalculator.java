@@ -32,9 +32,8 @@ class TakeHomeCalculator {
 
         if (!total.second.equals(tax.second)) {
             throw new Incalculable();
-        } else {
-            return new Pair<>(total.first - tax.first, first.second);
         }
+        return new Pair<>(total.first - tax.first, first.second);
     }
 
     static class Pair<A, B> {
