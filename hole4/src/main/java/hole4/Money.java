@@ -17,6 +17,9 @@ class Money {
     }
 
     Money minus(Money tax) {
+        if (!currency.equals(tax.currency)) {
+            throw new Incalculable();
+        }
         return new Money(value - tax.value, currency);
     }
 }
